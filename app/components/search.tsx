@@ -1,9 +1,15 @@
-export default function Search() {
+import { useState } from "react";
+
+function SearchField() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedStock, setSelectedStock] = useState("");
+
   return (
-    <div className="flex justify-center">
+    <div className="flex gap-1">
       <input
         type="text"
-        placeholder="Search..."
+        placeholder="Search products..."
         className="border"
       />
       <select className="border">
@@ -24,3 +30,5 @@ export default function Search() {
     </div>
   );
 }
+
+export default SearchField;
