@@ -1,4 +1,5 @@
 import type { ProductsResponse } from "./types";
+import SearchField from "./components/search";
 import ProductTable from "./components/ProductTable";
 
 const API_URL = "http://localhost:4000";
@@ -16,7 +17,11 @@ export default async function Home() {
   return (
     <main>
       <h1>Products</h1>
+      <SearchField />
       <ProductTable products={products} />
+      
+      
+      
     </main>
   );
 }
