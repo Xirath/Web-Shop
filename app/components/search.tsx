@@ -1,7 +1,7 @@
 // import { useState } from "react";
 // import { Filter } from "lucide-react";
 import type { Category } from "../types";
-import type { CategoriesResponse } from "../types";
+
 
 
 

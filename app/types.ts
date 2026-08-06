@@ -54,6 +54,3 @@ export interface ProductsResponse {
   pages: number;
 }
 
-export interface CategoriesResponse {
-  categories: Category[];
-}
