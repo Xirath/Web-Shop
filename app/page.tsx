@@ -11,18 +11,17 @@ export default async function Home() {
   // we also use _expand to get the relational category data
   // we can use the other destructed variables like page, total and so on to create pagination or show info
   const { products, total, page, pages, limit }: ProductsResponse = await fetch(
-    `${API_URL}/products/?_limit=${defaultLimit}&_sort=id&_order=desc&_expand=category`,
+    `${API_URL}/products/`,
   ).then((res) => res.json());
-
-
-console.log(products);
 
   return (
     <main>
       <h1>Products</h1>
-      <div>{products.map((product) => <h2 key={product.id}>{product.title} - {product.category?.name}</h2>)}</div>
       <SearchField />
-      <ProductTable />
+      <ProductTable products={products} />
+      
+      
+      
     </main>
   );
 }
