@@ -1,7 +1,13 @@
 // import { useState } from "react";
 // import { Filter } from "lucide-react";
+import type { Category } from "../types";
+import type { CategoriesResponse } from "../types";
 
-function SearchField() {
+
+
+
+
+export default function SearchField({ categories }: { categories: Category[] }) {
 //   const [searchTerm, setSearchTerm] = useState("");
 //   const [selectedCategory, setSelectedCategory] = useState("");
 //   const [selectedStock, setSelectedStock] = useState("");
@@ -16,9 +22,15 @@ function SearchField() {
 
       <select className="border rounded">
         <option value="">All Categories</option>
-        <option value="women-watches">Women's watches</option>
-        <option value="women-shoes">Women's shoes</option>
-        <option value="men-shirts">Men's shirts</option>
+        {categories.map((category) => (
+          <option key={category.id} value={category.id}>
+            {category.name}
+          </option>
+        ))}
+
+        
+        
+        
         
 
       </select>
@@ -33,4 +45,3 @@ function SearchField() {
   );
 }
 
-export default SearchField;

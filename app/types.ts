@@ -53,3 +53,7 @@ export interface ProductsResponse {
   page: number;
   pages: number;
 }
+
+export interface CategoriesResponse {
+  categories: Category[];
+}

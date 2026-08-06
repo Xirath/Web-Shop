@@ -2,6 +2,7 @@ import type { ProductsResponse } from "./types";
 import SearchField from "./components/search";
 import ProductTable from "./components/ProductTable";
 
+
 const API_URL = "http://localhost:4000";
 const defaultLimit = "6";
 
@@ -14,10 +15,19 @@ export default async function Home() {
     `${API_URL}/products/`,
   ).then((res) => res.json());
 
+
+  const categories = await fetch(
+          `${API_URL}/categories/`,
+        ).then((res) => res.json());
+  
+    
+      
+  
+
   return (
     <main>
       <h1>Products</h1>
-      <SearchField />
+      <SearchField categories={categories} />
       <ProductTable products={products} />
       
       
