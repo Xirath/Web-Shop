@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 function SearchField() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedStock, setSelectedStock] = useState("");
+//   const [searchTerm, setSearchTerm] = useState("");
+//   const [selectedCategory, setSelectedCategory] = useState("");
+//   const [selectedStock, setSelectedStock] = useState("");
 
   return (
     <div className="flex gap-1">
