@@ -53,3 +53,4 @@ export interface ProductsResponse {
   page: number;
   pages: number;
 }
+
