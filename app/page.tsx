@@ -18,7 +18,7 @@ export default async function Home() {
 
   return (
     <main>
-      <h1>Products</h1>
+      
     
       <DashboardHeader  />
       <DashboardCards />
