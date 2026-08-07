@@ -1,6 +1,8 @@
 import type { ProductsResponse } from "./types";
 import SearchField from "./components/search";
 import ProductTable from "./components/ProductTable";
+import DashboardHeader from "./components/DashboardHeader";
+
 
 
 const API_URL = "http://localhost:4000";
@@ -34,9 +36,9 @@ export default async function Home() {
   return (
     <main>
       <h1>Products</h1>
-      <SearchField categories={categories} />
-      <ProductTable products={products} />
-      
+      <DashboardHeader />
+      <SearchField categories={categories} />  
+      <ProductTable products={products} />    
       
       
     </main>
