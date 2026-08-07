@@ -2,15 +2,9 @@
 // import { Filter } from "lucide-react";
 import type { Category } from "../types";
 
-
-
-
-
-
-export default function SearchField({ categories }: { categories: Category[] }) {
-//   const [searchTerm, setSearchTerm] = useState("");
-//   const [selectedCategory, setSelectedCategory] = useState("");
-//   const [selectedStock, setSelectedStock] = useState("");
+// categories should default to []
+// pass categories only if the fetch returns a valid array, otherwise pass []
+export default function SearchField({ categories = [],}: { categories?: Category[] }) {
 
   return (
     <div className="flex w-full gap-1 rounded-lg border gray-200 bg-white p-2">
@@ -27,13 +21,7 @@ export default function SearchField({ categories }: { categories: Category[] }) 
             {category.name}
           </option>
         ))}
-
-        
-        
-        
-        
-
-      </select>
+        </select>
       <select className="border gray-200 rounded">
         <option value="">All stock</option>
         <option value="in-stock">In stock</option>
@@ -44,4 +32,3 @@ export default function SearchField({ categories }: { categories: Category[] }) 
     </div>
   );
 }
-

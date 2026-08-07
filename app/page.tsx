@@ -16,9 +16,16 @@ export default async function Home() {
   ).then((res) => res.json());
 
 
-  const categories = await fetch(
-          `${API_URL}/categories/`,
-        ).then((res) => res.json());
+  const categoriesResponse = await fetch(
+          `${API_URL}/categories/`);
+  
+  if (!categoriesResponse.ok) {
+    throw new Error("Failed to fetch categories");
+  }
+  
+  const categories = await categoriesResponse.json();
+
+    
   
     
       
