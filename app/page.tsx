@@ -19,9 +19,6 @@ export default async function Home() {
       <h1>Products</h1>
       <SearchField />
       <ProductTable products={products} />
-      
-      
-      
     </main>
   );
 }
