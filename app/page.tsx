@@ -22,7 +22,7 @@ export default async function Home() {
     
       <DashboardHeader  />
       <DashboardCards />
-       <SearchField />
+       <SearchField categories={categories} />
         
       <ProductTable products={products} />
       
