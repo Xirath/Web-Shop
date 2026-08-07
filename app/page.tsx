@@ -4,6 +4,7 @@ import ProductTable from "./components/ProductTable";
 import DashboardHeader from "./components/DashboardHeader";
 
 
+
 const API_URL = "http://localhost:4000";
 const defaultLimit = "6";
 
@@ -16,13 +17,28 @@ export default async function Home() {
     `${API_URL}/products/`,
   ).then((res) => res.json());
 
+
+  const categoriesResponse = await fetch(
+          `${API_URL}/categories/`);
+  
+  if (!categoriesResponse.ok) {
+    throw new Error("Failed to fetch categories");
+  }
+  
+  const categories = await categoriesResponse.json();
+
+    
+  
+    
+      
+  
+
   return (
     <main>
-      
+      <h1>Products</h1>
       <DashboardHeader />
-      <SearchField />
-      <ProductTable products={products} />
-      
+      <SearchField categories={categories} />  
+      <ProductTable products={products} />    
       
       
     </main>
