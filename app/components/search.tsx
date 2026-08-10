@@ -1,10 +1,20 @@
-// import { useState } from "react";
+import { useState } from "react";
 // import { Filter } from "lucide-react";
 import type { Category } from "../types";
 
 // categories should default to []
 // pass categories only if the fetch returns a valid array, otherwise pass []
 export default function SearchField({ categories = [],}: { categories?: Category[] }) {
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const productList = [];
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredProducts = productList.filter((item) =>
+    item.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="flex w-full gap-1 rounded-lg border gray-200 bg-white p-2">
