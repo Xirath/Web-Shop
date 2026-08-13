@@ -2,6 +2,8 @@ import type { ProductsResponse } from "./types";
 import SearchField from "./components/search";
 import ProductTable from "./components/ProductTable";
 import DashboardHeader from "./components/DashboardHeader";
+import DashboardCards from "./components/DashboardCards";
+import AddProductForm from "./components/AddProductForm";
 
 const API_URL = "http://localhost:4000";
 const defaultLimit = "6";
@@ -25,10 +27,11 @@ export default async function Home() {
 
   return (
     <main>
-      <h1>Products</h1>
       <DashboardHeader />
+      <DashboardCards />
       <SearchField categories={categories} />
       <ProductTable products={products} />
+      <AddProductForm />
     </main>
   );
 }
