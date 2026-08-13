@@ -50,6 +50,7 @@ export default function SearchField({
       </select>
       <button className="hover:bg-gray-300 px-2 border gray-200 rounded">X Filter</button>
     </div>
+    // Render the filtered products in the ProductTable component
     <ProductTable products={filteredProducts} />
     </div>
   );
