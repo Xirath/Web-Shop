@@ -58,7 +58,7 @@ export default function SearchField({
         X Filter
       </button>
     </div>
-    {/*Render the filtered products in the ProductTable component*/}
+    {/*Render the filtered products in the ProductTable component, this is double and means it should be taken away from page.tsx*/}
     <ProductTable products={filteredProducts} />
     </div>
   );
