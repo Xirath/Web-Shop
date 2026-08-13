@@ -1,4 +1,4 @@
-"use client";
+"use client"; // needed for usestate
 import { useState } from "react";
 // import { Filter } from "lucide-react";
 import type { Category, Product } from "../types";
@@ -14,18 +14,17 @@ export default function SearchField({
 }: { categories?: Category[], products?: Product[] }) {
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [submittedSearch, setSubmittedSearch] = useState("");
   
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-  };
+  
 
   //even when the search term is empty, we want to show all products, so we filter only when the search term is not empty
 
   const filteredProducts = 
-    searchTerm.trim() === ""
+    submittedSearch.trim() === ""
       ? products
       : products.filter((product) =>
-    product.title.toLowerCase().includes(searchTerm.trim().toLowerCase())
+    product.title.toLowerCase().includes(submittedSearch.trim().toLowerCase())
   );
 
   return (
@@ -53,7 +52,11 @@ export default function SearchField({
         <option value="low-stock">Low stock</option>
         <option value="out-of-stock">Out of stock</option>
       </select>
-      <button className="hover:bg-gray-300 px-2 border gray-200 rounded">X Filter</button>
+      <button className="hover:bg-gray-300 px-2 border gray-200 rounded" 
+      type="button" 
+      onClick={() => setSubmittedSearch(searchTerm)}>
+        X Filter
+      </button>
     </div>
     {/*Render the filtered products in the ProductTable component*/}
     <ProductTable products={filteredProducts} />
