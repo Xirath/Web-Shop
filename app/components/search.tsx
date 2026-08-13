@@ -19,7 +19,12 @@ export default function SearchField({
     setSearchTerm(event.target.value);
   };
 
-  const filteredProducts = products.filter((product) =>
+  //even when the search term is empty, we want to show all products, so we filter only when the search term is not empty
+
+  const filteredProducts = 
+    searchTerm.trim() === ""
+      ? products
+      : products.filter((product) =>
     product.title.toLowerCase().includes(searchTerm.trim().toLowerCase())
   );
 
@@ -50,7 +55,7 @@ export default function SearchField({
       </select>
       <button className="hover:bg-gray-300 px-2 border gray-200 rounded">X Filter</button>
     </div>
-    // Render the filtered products in the ProductTable component
+    {/*Render the filtered products in the ProductTable component*/}
     <ProductTable products={filteredProducts} />
     </div>
   );
