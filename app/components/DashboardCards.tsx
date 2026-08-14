@@ -1,40 +1,36 @@
-import { Package, CircleCheck, TriangleAlert, CircleX } from "lucide-react"
+import { Package2, CircleCheck, TriangleAlert, CircleX } from "lucide-react";
+import DashboardCard from "./DashboardCard";
 
-export default function DashboardCards() {
+export default function DashBoardCards() {
   return (
-    <section className="grid grid-cols-4 gap-2 ">
-      <div className="rounded-lg border border-gray-200 bg-white p-4">
-        
-    
-        <p className="text-sm font-medium text-gray-500" >
-            PRODUCTS
-            </p>
+    <div className="grid grid-cols-4 gap-2">
+      <DashboardCard
+        title="PRODUCTS"
+        count={193}
+        color="blue"
+        icon={Package2}
+      />
 
-        <p className="text-3xl font-bold text-violet-500" >
-            193</p>
-      </div>
+      <DashboardCard
+        title="IN STOCK"
+        count={169}
+        color="green"
+        icon={CircleCheck}
+      />
 
-      <div className="rounded-lg border border-gray-200 bg-white p-4" >
-        <p className=" text-sm font-medium text-gray-500" >
-            IN STOCK</p> 
-        <p className="text-3xl font-bold text-green-500" >
-            169</p>
-      </div>
+      <DashboardCard
+        title="LOW STOCK"
+        count={20}
+        color="orange"
+        icon={TriangleAlert}
+      />
 
-      <div className="rounded-lg border border-gray-200 bg-white p-4" >
-        <p className=" text-sm font-medium text-gray-500" >
-            LOW STOCK</p>
-        <p className="text-3xl font-bold text-orange-500" >
-            20</p>
-      </div>
-
-      <div className="rounded-lg border border-gray-200 bg-white p-4" >
-        <p className=" text-sm font-medium text-gray-500" >
-            OUT OF STOCK</p>
-        <p className="text-3xl font-bold text-red-500" >
-            4
-        </p>
-      </div>
-    </section>
+      <DashboardCard
+        title="OUT OF STOCK"
+        count={4}
+        color="red"
+        icon={CircleX}
+      />
+    </div>
   );
 }
