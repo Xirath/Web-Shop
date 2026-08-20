@@ -28,9 +28,9 @@ export default async function Home() {
   return (
     <main>
       <DashboardHeader />
-      <DashboardCards />
-      <SearchField categories={categories} products={products} />  
-      <ProductTable products={products} />    
+      <DashboardCards products={products} />
+      <SearchField categories={categories} products={products} />
+      <ProductTable products={products} />
       <AddProductForm categories={categories} />
     </main>
   );
