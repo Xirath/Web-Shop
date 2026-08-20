@@ -1,33 +1,59 @@
 import { Package2, CircleCheck, TriangleAlert, CircleX } from "lucide-react";
 import DashboardCard from "./DashboardCard";
+import type { Product } from "../types";
 
-export default function DashBoardCards() {
+interface StockCounts {
+  inStock: number;
+  lowStock: number;
+  outOfStock: number;
+}
+
+function getStockCounts(products: Product[]): StockCounts {
+  let inStock = 0;
+  let lowStock = 0;
+  let outOfStock = 0;
+
+  products.forEach((product) => {
+    if (product.stock === 0) {
+      outOfStock++;
+    } else if (product.stock != null && product.stock < 10) {
+      lowStock++;
+    } else {
+      inStock++;
+    }
+  });
+  return { inStock, lowStock, outOfStock };
+}
+
+export default function DashBoardCards({ products }: { products: Product[] }) {
+  const stockCounts = getStockCounts(products);
+
   return (
     <div className="grid grid-cols-4 gap-2">
       <DashboardCard
         title="PRODUCTS"
-        count={193}
+        count={products.length}
         color="blue"
         icon={Package2}
       />
 
       <DashboardCard
         title="IN STOCK"
-        count={169}
+        count={stockCounts.inStock}
         color="green"
         icon={CircleCheck}
       />
 
       <DashboardCard
         title="LOW STOCK"
-        count={20}
+        count={stockCounts.lowStock}
         color="orange"
         icon={TriangleAlert}
       />
 
       <DashboardCard
         title="OUT OF STOCK"
-        count={4}
+        count={stockCounts.outOfStock}
         color="red"
         icon={CircleX}
       />

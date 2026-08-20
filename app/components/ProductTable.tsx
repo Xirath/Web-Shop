@@ -45,7 +45,7 @@ export default function ProductTable({ products }: { products: Product[] }) {
       <table className="w-full border-collapse text-left">
         <thead className="bg-gray-50">
           <tr>
-            <th> Title</th>
+            <th>Title</th>
             <th>Brand</th>
             <th>Category</th>
             <th>Stock</th>
