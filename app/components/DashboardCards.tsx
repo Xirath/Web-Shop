@@ -27,7 +27,7 @@ function getStockCounts(products: Product[]): StockCounts {
   return { inStock, lowStock, outOfStock };
 }
 
-export default function DashBoardCards({ products }: { products: Product[] }) {
+export default function DashboardCards({ products }: { products: Product[] }) {
   const stockCounts = getStockCounts(products);
 
   return (
