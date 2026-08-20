@@ -14,9 +14,11 @@ function getStockCounts(products: Product[]): StockCounts {
   let outOfStock = 0;
 
   products.forEach((product) => {
-    if (product.stock === 0) {
+    const stock = product.stock ?? 0;
+
+    if (stock === 0) {
       outOfStock++;
-    } else if (product.stock != null && product.stock < 10) {
+    } else if (stock < 10) {
       lowStock++;
     } else {
       inStock++;
