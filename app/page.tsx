@@ -1,5 +1,5 @@
 import type { ProductsResponse } from "./types";
-import SearchField from "./components/search";
+import SearchField from "./components/NewSearch";
 import ProductTable from "./components/ProductTable";
 import DashboardHeader from "./components/DashboardHeader";
 import DashboardCards from "./components/DashboardCards";
@@ -8,7 +8,10 @@ import AddProductForm from "./components/AddProductForm";
 const API_URL = "http://localhost:4000";
 const defaultLimit = "6";
 
-export default async function Home() {
+export default async function Home({searchParams,}: {searchParams: Promise<{ q?: string }>;
+}) {
+  const params =  await searchParams;
+  
   // we use the fetch() method to get the products from the API
   // in this fetch we sort using _sort and _order and we limit the number of products using _limit
   // we also use _expand to get the relational category data
@@ -29,7 +32,7 @@ export default async function Home() {
     <main>
       <DashboardHeader />
       <DashboardCards />
-      <SearchField categories={categories} products={products} />  
+      <SearchField categories={categories} products={products} searchParams={params} />  
       <ProductTable products={products} />    
       
       
