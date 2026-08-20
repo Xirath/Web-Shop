@@ -31,8 +31,7 @@ export default async function Home() {
       <DashboardCards />
       <SearchField categories={categories} products={products} />  
       <ProductTable products={products} />    
-      
-      
+      <AddProductForm categories={categories} />
     </main>
   );
 }
