@@ -31,20 +31,23 @@ export default function SearchField({
   
 
   const filteredProducts = products.filter((product) => {
+
+
     const matchesSearch =
      searchTerm === "" ||
      product.title.toLowerCase().includes(searchTerm);
 
     const matchesCategory =
     selectedCategory === "" ||
-    product.category.name === selectedCategory;
+    product.category?.name === selectedCategory;
 
+    const stock = product.stock ?? 0;
     const matchesStock =
     selectedStock === "" ||
-    (selectedStock === "in-stock" && product.stock > 10) ||
+    (selectedStock === "in-stock" && stock > 10) ||
     (selectedStock === "low-stock" &&
-      product.stock > 0 &&
-      product.stock < 10) ||
+      stock > 0 &&
+      stock < 10) ||
     (selectedStock === "out-of-stock" && product.stock === 0);
 
 
