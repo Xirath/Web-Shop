@@ -27,7 +27,7 @@ export default function AddProductForm({ categories }: { categories: Category[] 
   <label className="mb-1 block text-sm font-medium text-gray-700">
     Category</label>
 
-  <select className="rounded-md border border-gray-300 px-3 py-2" text gray- required>
+  <select className="rounded-md border border-gray-300 px-3 py-2 text-gray-700" required>
     
     <option value="">Choose a category</option>
     {categories.map((category) => (
