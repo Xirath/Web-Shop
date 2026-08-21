@@ -1,14 +1,10 @@
 
 
-import type { Category, Product } from "../types";
+import type { Category, Product, SearchParams } from "../types";
 import ProductTable from "./ProductTable";
 
 
-type SearchParams = {
-    q?: string;
-    category?: string;
-    stock?: string;
-}
+
 
 // categories should default to []
 // pass categories only if the fetch returns a valid array, otherwise pass []
@@ -39,7 +35,7 @@ export default function SearchField({
 
     const matchesCategory =
     selectedCategory === "" ||
-    product.category?.name === selectedCategory;
+    product.category?.name.toLowerCase() === selectedCategory;
 
     const stock = product.stock ?? 0;
     const matchesStock =

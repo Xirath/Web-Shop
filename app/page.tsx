@@ -1,4 +1,4 @@
-import type { ProductsResponse } from "./types";
+import type { ProductsResponse, SearchParams } from "./types";
 import SearchField from "./components/NewSearch";
 import ProductTable from "./components/ProductTable";
 import DashboardHeader from "./components/DashboardHeader";

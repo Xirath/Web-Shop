@@ -53,4 +53,8 @@ export interface ProductsResponse {
   page: number;
   pages: number;
 }
-
+export type SearchParams = {
+    q?: string;
+    category?: string;
+    stock?: string;
+}
