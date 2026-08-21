@@ -6,7 +6,7 @@ import DashboardCards from "./components/DashboardCards";
 import AddProductForm from "./components/AddProductForm";
 
 const API_URL = "http://localhost:4000";
-const defaultLimit = "6";
+const defaultLimit = "200";
 
 export default async function Home({searchParams,}: {searchParams: Promise<{ q?: string }>;
 }) {
@@ -17,7 +17,7 @@ export default async function Home({searchParams,}: {searchParams: Promise<{ q?:
   // we also use _expand to get the relational category data
   // we can use the other destructed variables like page, total and so on to create pagination or show info
   const { products, total, page, pages, limit }: ProductsResponse = await fetch(
-    `${API_URL}/products/`,
+    `${API_URL}/products/?_limit=${defaultLimit}&_sort=id&_order=desc&_expand=category`,
   ).then((res) => res.json());
 
   const categoriesResponse = await fetch(`${API_URL}/categories/`);

@@ -2,10 +2,12 @@
 
 import type { Category, Product } from "../types";
 import ProductTable from "./ProductTable";
-import Link from "next/link";
+
 
 type SearchParams = {
     q?: string;
+    category?: string;
+    stock?: string;
 }
 
 // categories should default to []
@@ -23,15 +25,37 @@ export default function SearchField({
 ) {
 
   const submittedSearch = searchParams.q ?? "";
+  const selectedCategory = searchParams.category ?? "";
+  const selectedStock = searchParams.stock ?? "";
   const searchTerm = submittedSearch.trim().toLowerCase();
   
 
-  const filteredProducts = 
-    searchTerm === ""
-      ? products
-      : products.filter((product) =>
-    product.title.toLowerCase().includes(searchTerm)
-  );
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch =
+     searchTerm === "" ||
+     product.title.toLowerCase().includes(searchTerm);
+
+    const matchesCategory =
+    selectedCategory === "" ||
+    product.category.name === selectedCategory;
+
+    const matchesStock =
+    selectedStock === "" ||
+    (selectedStock === "in-stock" && product.stock > 10) ||
+    (selectedStock === "low-stock" &&
+      product.stock > 0 &&
+      product.stock < 10) ||
+    (selectedStock === "out-of-stock" && product.stock === 0);
+
+
+
+    return matchesSearch && matchesCategory && matchesStock;
+
+
+
+
+
+  });
 
   return (
     <div>
@@ -50,15 +74,19 @@ export default function SearchField({
         className="flex-2 px-2 border rounded"
         />
 
-      <select className="border rounded">
+      <select className="border rounded"
+      name="category"
+      defaultValue={selectedCategory}>
         <option value="">All Categories</option>
         {categories.map((category) => (
-          <option key={category.id} value={category.id}>
+          <option key={category.id} value={category.name.toLowerCase()}>
             {category.name}
           </option>
         ))}
         </select>
-      <select className="border gray-200 rounded">
+      <select className="border gray-200 rounded"
+      name="stock"
+      defaultValue={selectedStock}>
         <option value="">All stock</option>
         <option value="in-stock">In stock</option>
         <option value="low-stock">Low stock</option>
@@ -73,7 +101,12 @@ export default function SearchField({
       </button>
     </form>
     {/*Render the filtered products in the ProductTable component, this is double and means it should be taken away from page.tsx*/}
-    <ProductTable products={filteredProducts} />
+    {!filteredProducts.length ? (
+        <p>No products found.</p>
+        ) : (
+        <ProductTable products={filteredProducts} />
+        )}  
+    
     </div>
   );
 }
