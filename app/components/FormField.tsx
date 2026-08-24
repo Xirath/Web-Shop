@@ -1,7 +1,10 @@
 interface FormFieldProps {
   label: string;
   type: string;
-  placeholder: string;
+  placeholder?: string;
+  name: string;
+  id: string;
+ 
    required?: boolean;
 }
 
@@ -9,6 +12,9 @@ export default function FormField({
   label,
   type,
   placeholder,
+  
+  id,
+  name,
   required,
 }: FormFieldProps) {
   return (
@@ -17,7 +23,9 @@ export default function FormField({
 
       <input type={type} 
       placeholder={placeholder}    className="w-full rounded-md border border-gray-300 px-3 py-2"
-    required={required}/>
+    required={required}
+    name={name}
+    id={id}/>
     </div>
   );
 }

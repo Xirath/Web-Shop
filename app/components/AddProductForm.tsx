@@ -1,9 +1,10 @@
 import FormField from "./FormField"
 import type { Category } from "../types";
+import { createProductAction } from "../admin/actions";
 
 export default function AddProductForm({ categories }: { categories: Category[] }) {
   return (
-    <form className="mx-auto max-w-2xl rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+    <form action= {createProductAction} className="mx-auto max-w-2xl rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
         
       <h2 className="mb-6 text-2xl font-bold">
   Add Product
@@ -13,6 +14,8 @@ export default function AddProductForm({ categories }: { categories: Category[] 
         label="Product title"
         type="text"
         placeholder="Enter product title"
+        name="title"
+        id="title"
         required
       />
 
@@ -20,6 +23,8 @@ export default function AddProductForm({ categories }: { categories: Category[] 
   label="Brand"
   type="text"
   placeholder="Enter product brand"
+  name="brand"
+  id="brand"
   required
 />
 
@@ -38,10 +43,22 @@ export default function AddProductForm({ categories }: { categories: Category[] 
   </select>
 </div>
 
+<FormField
+        label="Category"
+        type="text"
+        placeholder="Ctaegory id"
+        name="categoryId"
+        id="categoryId"
+        required
+      />
+
+
 
  <FormField
   label="Price"
   type="number"
+  name="price"
+  id="price"
   placeholder="Enter product price"
   required
 />
@@ -49,19 +66,30 @@ export default function AddProductForm({ categories }: { categories: Category[] 
  <FormField
   label="Stock"
   type="number"
+  name="stock"
+  id="stock"
   placeholder="Enter Stock"
   required
 />
 <div className="mb-4">
   <label className="mb-1 block text-sm font-medium text-gray-700">
     Description</label>
+    
   <textarea placeholder="Enter product description" className="min-h-28 w-full rounded-md border border-gray-300 px-3 py-2"
 required />
+<FormField
+  label="thumbnail"
+  type="string"
+  name="thumbnail"
+  id="thumbnail"
+  
+  required
+/>
 </div>
 
 
 <button
-  type="button"
+  type="submit" 
   className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
   
 >
