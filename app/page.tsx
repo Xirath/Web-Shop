@@ -1,20 +1,23 @@
-import type { ProductsResponse } from "./types";
-import SearchField from "./components/search";
+import type { ProductsResponse, SearchParams } from "./types";
+import SearchField from "./components/NewSearch";
 import ProductTable from "./components/ProductTable";
 import DashboardHeader from "./components/DashboardHeader";
 import DashboardCards from "./components/DashboardCards";
 import AddProductForm from "./components/AddProductForm";
 
 const API_URL = "http://localhost:4000";
-const defaultLimit = "6";
+const defaultLimit = "200";
 
-export default async function Home() {
+export default async function Home({searchParams,}: {searchParams: Promise<{ q?: string }>;
+}) {
+  const params =  await searchParams;
+  
   // we use the fetch() method to get the products from the API
   // in this fetch we sort using _sort and _order and we limit the number of products using _limit
   // we also use _expand to get the relational category data
   // we can use the other destructed variables like page, total and so on to create pagination or show info
   const { products, total, page, pages, limit }: ProductsResponse = await fetch(
-    `${API_URL}/products/`,
+    `${API_URL}/products/?_limit=${defaultLimit}&_sort=id&_order=desc&_expand=category`,
   ).then((res) => res.json());
 
   const categoriesResponse = await fetch(`${API_URL}/categories/`);
@@ -29,7 +32,7 @@ export default async function Home() {
     <main>
       <DashboardHeader />
       <DashboardCards products={products} />
-      <SearchField categories={categories} products={products} />
+      <SearchField categories={categories} products={products} searchParams={params} />
       <ProductTable products={products} />
       <AddProductForm categories={categories} />
     </main>
