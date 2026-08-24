@@ -25,15 +25,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-td.out-of-stock {
+span.out-of-stock {
   color: red;
 }
 
-td.in-stock {
+span.in-stock {
   color: green;
 }
 
-td.low-stock {
+span.low-stock {
   color: orange;
 }
 
