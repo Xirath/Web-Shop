@@ -40,7 +40,7 @@ export default function SearchField({
     const stock = product.stock ?? 0;
     const matchesStock =
     selectedStock === "" ||
-    (selectedStock === "in-stock" && stock > 10) ||
+    (selectedStock === "in-stock" && stock >= 10) ||
     (selectedStock === "low-stock" &&
       stock > 0 &&
       stock < 10) ||
@@ -62,7 +62,7 @@ export default function SearchField({
         <form
         method="GET"
     
-        className="flex w-full gap-1 rounded-lg border gray-200 bg-white p-2">
+        className="flex w-full gap-1 rounded-lg border bg-white p-2">
 
       <input
         type="text"
