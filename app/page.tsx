@@ -31,11 +31,10 @@ export default async function Home({searchParams,}: {searchParams: Promise<{ q?:
   return (
     <main>
       <DashboardHeader />
-      <DashboardCards />
-      <SearchField categories={categories} products={products} searchParams={params} />  
-      <ProductTable products={products} />    
-      
-      
+      <DashboardCards products={products} />
+      <SearchField categories={categories} products={products} searchParams={params} />
+      <ProductTable products={products} />
+      <AddProductForm categories={categories} />
     </main>
   );
 }

@@ -1,6 +1,7 @@
-import FormField from "./FormField";
+import FormField from "./FormField"
+import type { Category } from "../types";
 
-export default function AddProductForm() {
+export default function AddProductForm({ categories }: { categories: Category[] }) {
   return (
     <form className="mx-auto max-w-2xl rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
         
@@ -21,6 +22,23 @@ export default function AddProductForm() {
   placeholder="Enter product brand"
   required
 />
+
+<div className="mb-4">
+  <label className="mb-1 block text-sm font-medium text-gray-700">
+    Category</label>
+
+  <select className="rounded-md border border-gray-300 px-3 py-2 text-gray-700" required>
+    
+    <option value="">Choose a category</option>
+    {categories.map((category) => (
+      <option key={category.id} value={category.id}>
+        {category.name}
+      </option>
+    ))}
+  </select>
+</div>
+
+
  <FormField
   label="Price"
   type="number"
@@ -40,6 +58,7 @@ export default function AddProductForm() {
   <textarea placeholder="Enter product description" className="min-h-28 w-full rounded-md border border-gray-300 px-3 py-2"
 required />
 </div>
+
 
 <button
   type="button"
