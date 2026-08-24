@@ -7,15 +7,12 @@ import AddProductForm from "./components/AddProductForm";
 import Pagination from "./components/Pagination";
 
 const API_URL = "http://localhost:4000";
-const API_URL = "http://localhost:4000";
 const defaultLimit = 8;
 
 export default async function Home({
   searchParams,
 }: {
-  searchParams: Promise<
-    Record<string, string | string[] | undefined>
-  >;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const params = await searchParams;
 
@@ -27,18 +24,16 @@ export default async function Home({
   // we can use the other destructed variables like page, total and so on to create pagination or show info
 
   const { products, total, page, pages, limit }: ProductsResponse = await fetch(
-const { products, total, page, pages, limit }: ProductsResponse = await fetch(
-  `${API_URL}/products/?_page=${currentPage}&_limit=${currentLimit}&_sort=id&_order=desc&_expand=category`,
-).then((res) => res.json());
+    `${API_URL}/products/?_page=${currentPage}&_limit=${currentLimit}&_sort=id&_order=desc&_expand=category`,
   ).then((res) => res.json());
 
   console.log({
-  total,
-  page,
-  pages,
-  limit,
-  products: products.length,
-});
+    total,
+    page,
+    pages,
+    limit,
+    products: products.length,
+  });
 
   const categoriesResponse = await fetch(`${API_URL}/categories/`);
 
@@ -52,20 +47,21 @@ const { products, total, page, pages, limit }: ProductsResponse = await fetch(
     <main>
       <DashboardHeader />
       <DashboardCards products={products} />
-      
-      <SearchField categories={categories}
-        products={products} 
-        searchParams={params} />
-      
+
+      <SearchField
+        categories={categories}
+        products={products}
+        searchParams={params}
+      />
+
       <ProductTable products={products} />
 
-     <Pagination
-  currentPage={currentPage}
-  pages={pages}
-  searchParams={params}
-/>
+      <Pagination
+        currentPage={currentPage}
+        pages={pages}
+        searchParams={params}
+      />
       <AddProductForm categories={categories} />
-      
     </main>
   );
 }
