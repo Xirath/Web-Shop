@@ -27,13 +27,11 @@ export default async function Home({
     `${API_URL}/products/?_page=${currentPage}&_limit=${currentLimit}&_sort=id&_order=desc&_expand=category`,
   ).then((res) => res.json());
 
-  console.log({
-    total,
-    page,
-    pages,
-    limit,
-    products: products.length,
-  });
+  const dashboardResponse = await fetch(`${API_URL}/products/?_limit=200`).then(
+    (res) => res.json(),
+  );
+
+  const allProducts = dashboardResponse.products;
 
   const categoriesResponse = await fetch(`${API_URL}/categories/`);
 
@@ -46,7 +44,8 @@ export default async function Home({
   return (
     <main>
       <DashboardHeader />
-      <DashboardCards products={products} />
+
+      <DashboardCards products={allProducts} />
 
       <SearchField
         categories={categories}
@@ -61,6 +60,7 @@ export default async function Home({
         pages={pages}
         searchParams={params}
       />
+
       <AddProductForm categories={categories} />
     </main>
   );
