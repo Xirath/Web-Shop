@@ -13,9 +13,7 @@ const defaultLimit = 8;
 export default async function Home({
   searchParams,
 }: {
-  searchParams: Promise<
-    Record<string, string | string[] | undefined>
-  >;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const params = await searchParams;
 
@@ -26,13 +24,13 @@ export default async function Home({
   // we also use _expand to get the relational category data
   // we can use the other destructed variables like page, total and so on to create pagination or show info
 
-  const { products, total, page, pages, limit }: ProductsResponse = await fetch(
 
+const { products, total, page, pages, limit }: ProductsResponse = await fetch(
   `${API_URL}/products/?_page=${currentPage}&_limit=${currentLimit}&_sort=id&_order=desc&_expand=category`,
 ).then((res) => res.json());
   
 
- 
+  
 
   const categoriesResponse = await fetch(`${API_URL}/categories/`);
 
@@ -45,21 +43,24 @@ export default async function Home({
   return (
     <main>
       <DashboardHeader />
-      <DashboardCards products={products} />
-      
-      <SearchField categories={categories}
-        products={products} 
-        searchParams={params} />
-      
+
+      <DashboardCards products={allProducts} />
+
+      <SearchField
+        categories={categories}
+        products={products}
+        searchParams={params}
+      />
+
       <ProductTable products={products} />
 
-     <Pagination
-  currentPage={currentPage}
-  pages={pages}
-  searchParams={params}
-/>
+      <Pagination
+        currentPage={currentPage}
+        pages={pages}
+        searchParams={params}
+      />
+
       <AddProductForm categories={categories} />
-      
     </main>
   );
 }
