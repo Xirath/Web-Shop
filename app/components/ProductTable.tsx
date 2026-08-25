@@ -1,11 +1,14 @@
 import type { Product } from "../types";
 import Image from "next/image";
+import Link from "next/link";
+import { DeleteButton } from "./admin/forms/form-delete";
+import { Pencil } from "lucide-react";
 
 function ProductRow({ product }: { product: Product }) {
   return (
     <tr>
       <td>
-        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+        <div className="flex justify-start items-center gap-4">
           <div className="h-12 w-12 shrink-0 sm:h-16 sm:w-16 lg:h-20 lg:w-20">
             <Image
               src={product.thumbnail}
@@ -44,12 +47,16 @@ function ProductRow({ product }: { product: Product }) {
       </td>
       <td className="font-bold">{`${Intl.NumberFormat("en-SV", { style: "currency", currency: "EUR" }).format(product.price)}`}</td>
       <td>
-        <button className="rounded bg-red-700 px-4 py-2 text-white hover:bg-red-800">
-          Delete
-        </button>
-        <button className="rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600">
-          Edit
-        </button>
+        <div className="flex gap-2 justify-start items-center">
+          <DeleteButton id={product.id} />
+          <Link
+            href={`/admin/products/edit/${product.id}`}
+            className="flex hover:text-green-600 duration-250"
+          >
+            <span className="sr-only">Edit</span>
+            <Pencil />
+          </Link>
+        </div>
       </td>
     </tr>
   );
