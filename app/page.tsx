@@ -30,7 +30,11 @@ const { products, total, page, pages, limit }: ProductsResponse = await fetch(
 ).then((res) => res.json());
   
 
-  
+  const dashboardResponse = await fetch(`${API_URL}/products/?_limit=200`).then(
+    (res) => res.json(),
+  );
+ 
+  const allProducts = dashboardResponse.products;
 
   const categoriesResponse = await fetch(`${API_URL}/categories/`);
 
