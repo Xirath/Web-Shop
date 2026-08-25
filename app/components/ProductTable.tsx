@@ -1,4 +1,5 @@
 import type { Product } from "../types";
+import { DeleteButton } from "./form-delete";
 
 function ProductRow({ product }: { product: Product }) {
   return (
@@ -28,9 +29,10 @@ function ProductRow({ product }: { product: Product }) {
       </td>
       <td>{product.price}</td>
       <td>
-        <button className="rounded bg-red-700 px-4 py-2 text-white hover:bg-red-800">
+        {/*<button className="rounded bg-red-700 px-4 py-2 text-white hover:bg-red-800">
           Delete
-        </button>
+        </button>*/}
+        <DeleteButton id={product.id}/>
         <button className="rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600">
           Edit
         </button>

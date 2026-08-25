@@ -1,6 +1,9 @@
 import FormField from "./FormField"
 import type { Category } from "../types";
 import { createProductAction } from "../admin/actions";
+import SaveButton from "./save-button";
+import Link from "next/link";
+
 
 export default function AddProductForm({ categories }: { categories: Category[] }) {
   return (
@@ -32,7 +35,7 @@ export default function AddProductForm({ categories }: { categories: Category[] 
   <label className="mb-1 block text-sm font-medium text-gray-700">
     Category</label>
 
-  <select className="rounded-md border border-gray-300 px-3 py-2 text-gray-700" required>
+  <select name="categoryId" className="rounded-md border border-gray-300 px-3 py-2 text-gray-700" required>
     
     <option value="">Choose a category</option>
     {categories.map((category) => (
@@ -43,14 +46,7 @@ export default function AddProductForm({ categories }: { categories: Category[] 
   </select>
 </div>
 
-<FormField
-        label="Category"
-        type="text"
-        placeholder="Ctaegory id"
-        name="categoryId"
-        id="categoryId"
-        required
-      />
+
 
 
 
@@ -75,7 +71,7 @@ export default function AddProductForm({ categories }: { categories: Category[] 
   <label className="mb-1 block text-sm font-medium text-gray-700">
     Description</label>
     
-  <textarea placeholder="Enter product description" className="min-h-28 w-full rounded-md border border-gray-300 px-3 py-2"
+  <textarea name="description" placeholder="Enter product description" className="min-h-28 w-full rounded-md border border-gray-300 px-3 py-2"
 required />
 <FormField
   label="thumbnail"
@@ -86,17 +82,16 @@ required />
   required
 />
 </div>
+<div>
+<Link
+  href={"/"}
+  className="border rounded-lg">
+    Cancel
+</Link>
 
+<SaveButton />
 
-<button
-  type="submit" 
-  className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-  
->
-  Add Product
-</button>
-
-
+</div>
     </form>
   );
 }
