@@ -45,7 +45,7 @@ function ProductRow({ product }: { product: Product }) {
         </span>
         ({product?.stock ?? 0})
       </td>
-      <td className="font-bold">{`${Intl.NumberFormat("en-SV", { style: "currency", currency: "EUR" }).format(product.price)}`}</td>
+      <td className="font-bold">{Intl.NumberFormat("en-SV", { style: "currency", currency: "EUR" }).format(product.price)}</td>
       <td>
         <div className="flex gap-2 justify-start items-center">
           <DeleteButton id={product.id} />
