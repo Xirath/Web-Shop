@@ -24,6 +24,7 @@ function DeleteButtonIcon() {
 
 export function DeleteButton({ id }: { id: number }) {
   const handleDelete = async () => {
+    if(!confirm("Are you sure you want to delete this product?")) return;
     const result = await deleteProductAction(id);
 
         if(!result){
