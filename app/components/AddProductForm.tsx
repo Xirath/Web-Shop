@@ -59,16 +59,19 @@ export default function AddProductForm({ categories }: { categories: Category[] 
 required />
 </div>
 
+<FormField
+  label="Thumbnail"
+  name="thumbnail"
+  type="url"
+  placeholder="Enter image URL"
+  required
+/>
+
 
 <button
-  type="button"
+  type="submit"
   className="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
   
 >
-  Add Product
-</button>
-
-
-    </form>
-  );
-}
+  Add Product </button>
+   </form> ); }
