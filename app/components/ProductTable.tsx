@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { DeleteButton } from "./admin/forms/form-delete";
 import { Pencil } from "lucide-react";
+import { DeleteProductButton } from "../admin/forms/form-delete";
 
 function ProductRow({ product }: { product: Product }) {
   return (
@@ -49,6 +50,7 @@ function ProductRow({ product }: { product: Product }) {
       <td>
         <div className="flex gap-2 justify-start items-center">
           <DeleteButton id={product.id} />
+          
           <Link
             href={`/admin/products/edit/${product.id}`}
             className="flex hover:text-green-600 duration-250"

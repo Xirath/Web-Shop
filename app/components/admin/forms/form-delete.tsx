@@ -2,6 +2,8 @@
 
 import { LoaderCircle, Trash2 } from "lucide-react";
 import { useFormStatus } from "react-dom";
+import { deleteProductAction } from "@/app/admin/actions";
+import toast from "react-hot-toast";
 
 function DeleteButtonIcon() {
   const { pending } = useFormStatus();
@@ -9,7 +11,7 @@ function DeleteButtonIcon() {
     <button
       type="submit"
       aria-label="Delete product"
-      className="hover:text-red-600 duration-[250ms] flex"
+      className="hover:text-red-600 duration-[250ms] flex cursor-pointer"
     >
       {pending ? (
         <LoaderCircle className="animate-spin" aria-hidden="true" />
@@ -22,8 +24,13 @@ function DeleteButtonIcon() {
 
 export function DeleteButton({ id }: { id: number }) {
   const handleDelete = async () => {
-    // TODO: Implement the delete logic here
-    console.log("Delete not implemented yet");
+    const result = await deleteProductAction(id);
+
+        if(!result){
+            toast.error("Could not delete product")
+            return
+        }
+        toast.success("Product deleted");
   };
   return (
     <form action={handleDelete}>

@@ -11,8 +11,8 @@ export async function deleteProductAction(id: number) {
   try{
     await deleteProduct(id);
     revalidatePath("/");
-    return {message:"success"}
+    return true
   } catch(error){
-    return {message:"could not delete product"}
+    return false
   }
 }
