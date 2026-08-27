@@ -25,13 +25,6 @@ export default function EditProductForm({
   const getDefaultValue = (name: string, fallback: string | number) =>
     (state.formData?.get(name) as string) ?? fallback;
 
-  console.log("Stock value:", product.stock);
-  if (!isNaN(product.stock) && product.stock >= 0) {
-    console.log("Stock is valid:", product.stock);
-  } else {
-    console.log("Stock is invalid or undefined:", product.stock);
-  }
-
   return (
     <form
       action={formAction}
