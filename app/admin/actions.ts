@@ -48,8 +48,20 @@ try {
 redirect("/");
 }
 
+
+async function deleteProduct(id: number) {
+  const response = await fetch(`http://localhost:4000/products/${id}`, {
+    method: "DELETE",
+  });}
+
 export async function deleteProductAction(id: number) {
-  // TODO: Implement the delete logic here
+  try{
+    await deleteProduct(id);
+    revalidatePath("/");
+    return true
+  } catch(error){
+    return false
+  }
 }
 
 export type FormState = {

@@ -11803,6 +11803,22 @@
       ],
       "thumbnail": "https://cdn.dummyjson.com/product-images/womens-watches/women's-wrist-watch/thumbnail.webp",
       "categoryId": 24
+    },
+    {
+      "title": "ytr",
+      "brand": "gj",
+      "categoryId": 3,
+      "price": 7,
+      "stock": 6,
+      "description": "fhy",
+      "thumbnail": "https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/thumbnail.webp",
+      "images": [],
+      "meta": {
+        "createdAt": "2026-08-27T08:27:29.257Z",
+        "updatedAt": "2026-08-27T08:27:29.257Z"
+      },
+      "id": 195,
+      "sku": "FUR-GJ-YTR-195"
     }
   ],
   "categories": [

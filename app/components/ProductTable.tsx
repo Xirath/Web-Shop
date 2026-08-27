@@ -54,6 +54,7 @@ function ProductRow({ product }: { product: Product }) {
       <td>
         <div className="flex gap-2 justify-start items-center">
           <DeleteButton id={product.id} />
+          
           <Link
             href={`/admin/products/edit/${product.id}`}
             className="flex hover:text-green-600 duration-[250ms]"
