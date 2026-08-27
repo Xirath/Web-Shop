@@ -1,24 +1,35 @@
-import type { Category, Product, SearchParams } from "../types";
+import type { Category, Product } from "../types";
 import ProductTable from "./ProductTable";
+import Pagination from "./Pagination";
+import { Funnel } from "lucide-react";
+
+const PAGE_LIMIT = 8;
+
+type RawSearchParams = Record<string, string | string[] | undefined>;
+
+function getParam(searchParams: RawSearchParams, key: string) {
+  const value = searchParams[key];
+  return typeof value === "string" ? value : "";
+}
 
 // categories should default to []
 // pass categories only if the fetch returns a valid array, otherwise pass []
 export default function SearchField({
   searchParams,
-  products,
   categories = [],
+  allProducts,
 }: {
-  searchParams: SearchParams;
-  products: Product[];
+  searchParams: RawSearchParams;
   categories?: Category[];
-  changed?: string;
+  allProducts: Product[];
 }) {
-  const submittedSearch = searchParams.q ?? "";
-  const selectedCategory = searchParams.category ?? "";
-  const selectedStock = searchParams.stock ?? "";
+  const submittedSearch = getParam(searchParams, "q");
+  const selectedCategory = getParam(searchParams, "category");
+  const selectedStock = getParam(searchParams, "stock");
+  const currentPage = Number(getParam(searchParams, "page") || "1");
   const searchTerm = submittedSearch.trim().toLowerCase();
 
-  const filteredProducts = products.filter((product) => {
+  const filteredProducts = allProducts.filter((product) => {
     const matchesSearch =
       searchTerm === "" || product.title.toLowerCase().includes(searchTerm);
 
@@ -35,6 +46,15 @@ export default function SearchField({
 
     return matchesSearch && matchesCategory && matchesStock;
   });
+
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredProducts.length / PAGE_LIMIT),
+  );
+  const pageProducts = filteredProducts.slice(
+    (currentPage - 1) * PAGE_LIMIT,
+    currentPage * PAGE_LIMIT,
+  );
 
   return (
     <div>
@@ -73,18 +93,29 @@ export default function SearchField({
           <option value="out-of-stock">Out of stock</option>
         </select>
         <button type="submit" className="hover:bg-gray-300 px-2 border rounded">
-          X Filter
+          <span className="flex items-center gap-1">
+            <Funnel
+              className="pb-[1px] h-[1em] w-[1em] shrink-0"
+              fill="black"
+            />
+            Filter
+          </span>
         </button>
       </form>
       {/*Render the filtered products in the ProductTable component, this is double and means it should be taken away from page.tsx*/}
-      {!filteredProducts.length ? (
+      {!pageProducts.length ? (
         <p>No products found.</p>
       ) : (
         <ProductTable
-          changedProduct={searchParams.changed ?? ""}
-          products={filteredProducts}
+          changedProduct={getParam(searchParams, "changed")}
+          products={pageProducts}
         />
       )}
+      <Pagination
+        currentPage={currentPage}
+        pages={totalPages}
+        searchParams={searchParams}
+      />
     </div>
   );
 }

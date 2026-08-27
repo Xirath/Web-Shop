@@ -5,21 +5,18 @@ interface PaginationProps {
   currentPage: number;
   pages: number;
   searchParams: Record<string, string | string[] | undefined>;
-
 }
-
 
 export default function Pagination({
   currentPage,
   pages,
   searchParams,
 }: PaginationProps) {
-
-
-
   let visiblePages: (number | string)[];
 
-  if (currentPage <= 3) {
+  if (pages <= 5) {
+    visiblePages = Array.from({ length: pages }, (_, i) => i + 1);
+  } else if (currentPage <= 3) {
     visiblePages = [1, 2, 3, 4, "...", pages];
   } else if (currentPage >= pages - 2) {
     visiblePages = [1, "...", pages - 3, pages - 2, pages - 1, pages];
@@ -35,18 +32,17 @@ export default function Pagination({
     ];
   }
 
-
-
-
   return (
     <div className="flex items-center justify-center gap-2">
-      {currentPage > 1 && <Link 
-
-      href={`?${createQueryString(searchParams, {
-  page: currentPage + 1,
-})}`}>
-        
-        ‹</Link>}
+      {currentPage > 1 && (
+        <Link
+          href={`?${createQueryString(searchParams, {
+            page: currentPage + 1,
+          })}`}
+        >
+          ‹
+        </Link>
+      )}
 
       {visiblePages.map((item, index) => {
         if (item === "...") {
@@ -79,10 +75,11 @@ export default function Pagination({
       })}
 
       {currentPage < pages && (
-        <Link 
-        href={`?${createQueryString(searchParams, {
-  page: currentPage - 1,
-})}`}>
+        <Link
+          href={`?${createQueryString(searchParams, {
+            page: currentPage - 1,
+          })}`}
+        >
           ›
         </Link>
       )}
