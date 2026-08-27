@@ -11,7 +11,7 @@ function DeleteButtonIcon() {
     <button
       type="submit"
       aria-label="Delete product"
-      className="hover:text-red-600 duration-[250ms] flex cursor-pointer"
+      className="hover:text-red-600 cursor-pointer duration-[250ms] flex"
     >
       {pending ? (
         <LoaderCircle className="animate-spin" aria-hidden="true" />
