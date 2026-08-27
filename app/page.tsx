@@ -56,7 +56,7 @@ const { products, total, page, pages, limit }: ProductsResponse = await fetch(
         searchParams={params}
       />
 
-      <ProductTable products={products} />
+      
 
       <Pagination
         currentPage={currentPage}
