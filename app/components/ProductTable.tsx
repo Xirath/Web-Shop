@@ -45,14 +45,19 @@ function ProductRow({ product }: { product: Product }) {
         </span>
         ({product?.stock ?? 0})
       </td>
-      <td className="font-bold">{Intl.NumberFormat("en-SV", { style: "currency", currency: "EUR" }).format(product.price)}</td>
+      <td className="font-bold">
+        {Intl.NumberFormat("en-SV", {
+          style: "currency",
+          currency: "EUR",
+        }).format(product.price)}
+      </td>
       <td>
         <div className="flex gap-2 justify-start items-center">
           <DeleteButton id={product.id} />
           
           <Link
             href={`/admin/products/edit/${product.id}`}
-            className="flex hover:text-green-600 duration-250"
+            className="flex hover:text-green-600 duration-[250ms]"
           >
             <span className="sr-only">Edit</span>
             <Pencil />
