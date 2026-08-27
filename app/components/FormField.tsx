@@ -1,6 +1,6 @@
 interface FormFieldProps {
   label: string;
-  type: "text" | "number";
+  type: "text" | "number" | "url";
   name: string;
   placeholder: string;
   defaultValue?: string | number;
