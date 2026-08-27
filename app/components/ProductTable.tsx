@@ -4,11 +4,21 @@ import Link from "next/link";
 import { DeleteButton } from "./admin/forms/form-delete";
 import { Pencil } from "lucide-react";
 
-function ProductRow({ product }: { product: Product }) {
+function ProductRow({
+  product,
+  changed,
+}: {
+  product: Product;
+  changed: boolean;
+}) {
   return (
-    <tr>
+    <tr
+      className={
+        changed ? "animate-[highlight-fade_2s_ease-out_1s_backwards]" : ""
+      }
+    >
       <td>
-        <div className="flex justify-start items-center gap-4">
+        <div className={`flex justify-start items-center gap-4`}>
           <div className="h-12 w-12 shrink-0 sm:h-16 sm:w-16 lg:h-20 lg:w-20">
             <Image
               src={product.thumbnail}
@@ -68,7 +78,13 @@ function ProductRow({ product }: { product: Product }) {
   );
 }
 
-export default function ProductTable({ products }: { products: Product[] }) {
+export default function ProductTable({
+  changedProduct,
+  products,
+}: {
+  changedProduct: string;
+  products: Product[];
+}) {
   return (
     <div className="mt-6 overflow-auto rounded-lg border border-gray-200 bg-white text-black">
       <table className="w-full border-collapse text-left [&_th]:px-4 [&_th]:py-3 [&_td]:px-4 [&_td]:py-3">
@@ -84,7 +100,11 @@ export default function ProductTable({ products }: { products: Product[] }) {
         </thead>
         <tbody>
           {products.map((product) => (
-            <ProductRow key={product.id} product={product} />
+            <ProductRow
+              key={product.id}
+              product={product}
+              changed={product.id === parseInt(changedProduct) ? true : false}
+            />
           ))}
         </tbody>
       </table>
