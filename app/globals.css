@@ -37,6 +37,15 @@ span.low-stock {
   color: orange;
 }
 
+@keyframes highlight-fade {
+  from {
+    background-color: oklch(90.5% 0.182 98.111); /* Tailwind yellow-200 */
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
 .sku {
   font-size: 0.8rem;
   color: gray;
