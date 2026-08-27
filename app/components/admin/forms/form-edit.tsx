@@ -1,8 +1,12 @@
+"use client";
+
 import FormField from "@/app/components/FormField";
 import type { Product } from "@/app/types";
-import { editProductAction } from "@/app/admin/actions";
+import { editProductAction, FormState } from "@/app/admin/actions";
+import { useActionState } from "react";
 
-// OK, should send in product, get category id from it and get a separate list of categories to pick from.
+const initialState: FormState = {};
+
 // TODO: Proper formatting of the currency
 export default function EditProductForm({
   product,
@@ -12,9 +16,13 @@ export default function EditProductForm({
   categories: { id: string | number; name: string }[];
 }) {
   const updateWithId = editProductAction.bind(null, product.id);
+  const [state, formAction, isPending] = useActionState(
+    updateWithId,
+    initialState,
+  );
   return (
     <form
-      action={updateWithId}
+      action={formAction}
       className="mx-auto max-w-2xl rounded-lg border border-gray-200 bg-white p-6 shadow-sm"
     >
       <h2 className="mb-6 text-2xl font-bold">Edit Product</h2>
@@ -27,7 +35,7 @@ export default function EditProductForm({
         defaultValue={product.title}
         required
       />
-
+      {state.errors?.title && <p>{state.errors.title}</p>}
       <FormField
         name="brand"
         label="Brand"

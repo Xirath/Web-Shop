@@ -8,8 +8,18 @@ export async function deleteProductAction(id: number) {
   // TODO: Implement the delete logic here
 }
 
-export async function editProductAction(id: number, formData: FormData) {
-  console.log("???");
+export type FormState = {
+  errors?: {
+    title?: string;
+    price?: string;
+  };
+};
+
+export async function editProductAction(
+  id: number,
+  _prevState: FormState,
+  formData: FormData,
+) {
   const title = formData.get("title") as string;
   const brand = formData.get("brand") as string;
   const categoryId = formData.get("categoryId") as string;
@@ -18,10 +28,17 @@ export async function editProductAction(id: number, formData: FormData) {
   const description = formData.get("description") as string;
   const thumbnail = formData.get("thumbnail") as string;
 
-  console.log("Getting Form Data:", {
-    title,
-    brand,
-  });
+  const errors: FormState["errors"] = {};
+
+  if (!title || title.length < 3) {
+    errors.title = "Title must be at least 3 characters long";
+  }
+
+  if (Object.keys(errors).length > 0) {
+    return {
+      errors,
+    };
+  }
 
   const newProduct = {
     title,
@@ -45,4 +62,6 @@ export async function editProductAction(id: number, formData: FormData) {
 
   // TODO: show a success message and redirect to the product list page after successful update
   //redirect("/admin/?status=success");
+
+  return {};
 }
