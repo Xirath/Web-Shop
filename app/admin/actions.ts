@@ -144,5 +144,5 @@ export async function editProductAction(
   }
 
   // TODO: show a success message and redirect to the product list page after successful update
-  redirect("/?status=success");
+  redirect("/?changed=" + id);
 }
